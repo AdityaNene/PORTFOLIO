@@ -1352,7 +1352,7 @@
             <div class="container">
                 <div class="hero-content">
                     <div class="hero-text">
-                        <h1>Aditya Rajesh Nene</h1>
+                        <h1>Aditya Nene</h1>
                         <div class="subtitle">Data Engineer & AI Research Assistant</div>
                         <p>Passionate about building intelligent data-driven solutions and developing cutting-edge AI systems. Recently graduated with MS in Information Technology from Worcester Polytechnic Institute with expertise in data engineering, data analysis, business analysis, and UI/UX design.</p>
                         <a href="#contact" class="cta-button">
@@ -1880,6 +1880,125 @@
                 document.getElementById('photoFallback').style.display = 'flex';
             }
         }
+
+        // Emergency text fitting with better name sizing
+        function forceTextToFit() {
+            const viewportWidth = window.innerWidth;
+            
+            if (viewportWidth <= 768) {
+                const h1 = document.querySelector('.hero-text h1');
+                const subtitle = document.querySelector('.hero-text .subtitle');
+                const paragraph = document.querySelector('.hero-text p');
+                const heroText = document.querySelector('.hero-text');
+                
+                if (h1 && subtitle && paragraph && heroText) {
+                    // Better sizing with larger name
+                    let h1Size, subtitleSize, paragraphSize;
+                    
+                    if (viewportWidth <= 320) {
+                        h1Size = '20px';  // Larger name
+                        subtitleSize = '12px';
+                        paragraphSize = '10px';
+                    } else if (viewportWidth <= 375) {
+                        h1Size = '24px';  // Larger name
+                        subtitleSize = '14px';
+                        paragraphSize = '11px';
+                    } else if (viewportWidth <= 480) {
+                        h1Size = '28px';  // Larger name
+                        subtitleSize = '16px';
+                        paragraphSize = '12px';
+                    } else {
+                        h1Size = '32px';  // Larger name
+                        subtitleSize = '18px';
+                        paragraphSize = '13px';
+                    }
+                    
+                    // Force apply the sizes
+                    h1.style.setProperty('font-size', h1Size, 'important');
+                    subtitle.style.setProperty('font-size', subtitleSize, 'important');
+                    paragraph.style.setProperty('font-size', paragraphSize, 'important');
+                    
+                    // Force container constraints
+                    heroText.style.setProperty('max-width', '95vw', 'important');
+                    heroText.style.setProperty('padding', '0 0.5rem', 'important');
+                    heroText.style.setProperty('word-break', 'break-word', 'important');
+                    heroText.style.setProperty('overflow-wrap', 'break-word', 'important');
+                    
+                    // Better line heights
+                    h1.style.setProperty('line-height', '1.1', 'important');
+                    subtitle.style.setProperty('line-height', '1.2', 'important');
+                    paragraph.style.setProperty('line-height', '1.4', 'important');
+                    
+                    console.log(`Better sizing applied for ${viewportWidth}px: H1=${h1Size}, Subtitle=${subtitleSize}, Text=${paragraphSize}`);
+                }
+            }
+        }
+
+        // Fast recommendations loading for mobile
+        function optimizeRecommendationsForMobile() {
+            if (window.innerWidth <= 768) {
+                const recommendationSection = document.getElementById('recommendations');
+                const recommendationCards = document.querySelectorAll('.recommendation-card-full');
+                
+                if (recommendationSection && recommendationCards.length > 0) {
+                    // Reduce content initially for faster loading
+                    recommendationCards.forEach((card, index) => {
+                        const letterContent = card.querySelector('.letter-content');
+                        if (letterContent) {
+                            // Hide detailed content initially
+                            letterContent.style.display = 'none';
+                            
+                            // Add a "Read More" button
+                            if (!card.querySelector('.mobile-read-more')) {
+                                const readMoreBtn = document.createElement('button');
+                                readMoreBtn.className = 'mobile-read-more';
+                                readMoreBtn.textContent = 'Read Full Letter';
+                                readMoreBtn.style.cssText = `
+                                    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+                                    color: white;
+                                    border: none;
+                                    padding: 0.8rem 1.5rem;
+                                    border-radius: 25px;
+                                    font-size: 0.9rem;
+                                    font-weight: 600;
+                                    cursor: pointer;
+                                    margin-top: 1rem;
+                                    width: 100%;
+                                `;
+                                
+                                readMoreBtn.addEventListener('click', function() {
+                                    if (letterContent.style.display === 'none') {
+                                        letterContent.style.display = 'block';
+                                        this.textContent = 'Hide Letter';
+                                    } else {
+                                        letterContent.style.display = 'none';
+                                        this.textContent = 'Read Full Letter';
+                                    }
+                                });
+                                
+                                card.querySelector('.recommendation-content-full').appendChild(readMoreBtn);
+                            }
+                        }
+                    });
+                    
+                    console.log('Mobile recommendations optimized - content hidden for faster loading');
+                }
+            }
+        }
+
+        // Run both optimizations
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(forceTextToFit, 100);
+            setTimeout(optimizeRecommendationsForMobile, 200);
+        });
+        
+        window.addEventListener('resize', function() {
+            setTimeout(forceTextToFit, 100);
+        });
+        
+        window.addEventListener('orientationchange', function() {
+            setTimeout(forceTextToFit, 300);
+        });
 
         // Dynamic text sizing based on screen dimensions
         function adjustTextForScreen() {
