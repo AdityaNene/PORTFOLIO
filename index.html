@@ -1927,50 +1927,102 @@
             }
         }
 
-        // Simple fast loading for mobile - no buttons, just full content
-        function fastMobileRecommendations() {
+        // Ultra-fast recommendations loading for mobile
+        function ultraFastMobileRecommendations() {
             if (window.innerWidth <= 768) {
-                // Just optimize existing content, don't hide anything
                 const recommendationCards = document.querySelectorAll('.recommendation-card-full');
                 
-                recommendationCards.forEach((card) => {
-                    // Remove any existing mobile optimization elements
-                    const mobilePreview = card.querySelector('.mobile-preview');
-                    const mobileFullContent = card.querySelector('.mobile-full-content');
-                    const mobileReadMore = card.querySelector('.mobile-read-more');
-                    
-                    if (mobilePreview) mobilePreview.remove();
-                    if (mobileFullContent) mobileFullContent.remove();
-                    if (mobileReadMore) mobileReadMore.remove();
-                    
-                    // Ensure all content is visible
+                recommendationCards.forEach((card, index) => {
                     const letterContent = card.querySelector('.letter-content');
                     const recommenderDetails = card.querySelector('.recommender-details');
                     
-                    if (letterContent) {
-                        letterContent.style.display = 'block';
-                        letterContent.style.fontSize = '0.75rem';
-                        letterContent.style.lineHeight = '1.4';
-                    }
-                    
-                    if (recommenderDetails) {
-                        recommenderDetails.style.display = 'block';
-                        recommenderDetails.style.fontSize = '0.7rem';
-                        recommenderDetails.style.padding = '0.8rem';
+                    if (letterContent && recommenderDetails) {
+                        // Hide all heavy content immediately
+                        letterContent.style.display = 'none';
+                        recommenderDetails.style.display = 'none';
+                        
+                        // Create super simple preview
+                        const preview = document.createElement('div');
+                        preview.className = 'mobile-preview';
+                        preview.innerHTML = `
+                            <p style="font-size: 0.8rem; color: #cbd5e1; margin: 0.5rem 0; font-style: italic;">
+                                "${letterContent.querySelector('p')?.textContent.substring(0, 80)}..."
+                            </p>
+                            <button style="
+                                background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+                                color: white;
+                                border: none;
+                                padding: 0.7rem 1.5rem;
+                                border-radius: 20px;
+                                font-size: 0.8rem;
+                                font-weight: 600;
+                                cursor: pointer;
+                                width: 100%;
+                                margin-top: 0.5rem;
+                                transition: all 0.2s ease;
+                            " onclick="this.parentElement.nextElementSibling.style.display='block'; this.parentElement.style.display='none';">
+                                📖 Read Full Letter
+                            </button>
+                        `;
+                        
+                        // Create full content container (hidden)
+                        const fullContent = document.createElement('div');
+                        fullContent.className = 'mobile-full-content';
+                        fullContent.style.display = 'none';
+                        fullContent.appendChild(recommenderDetails.cloneNode(true));
+                        fullContent.appendChild(letterContent.cloneNode(true));
+                        
+                        const hideButton = document.createElement('button');
+                        hideButton.innerHTML = '↑ Hide Letter';
+                        hideButton.style.cssText = `
+                            background: rgba(255, 255, 255, 0.1);
+                            color: #cbd5e1;
+                            border: 1px solid rgba(255, 255, 255, 0.2);
+                            padding: 0.5rem 1rem;
+                            border-radius: 15px;
+                            font-size: 0.75rem;
+                            cursor: pointer;
+                            width: 100%;
+                            margin-top: 1rem;
+                        `;
+                        hideButton.onclick = function() {
+                            fullContent.style.display = 'none';
+                            preview.style.display = 'block';
+                        };
+                        fullContent.appendChild(hideButton);
+                        
+                        // Replace original content
+                        const contentContainer = card.querySelector('.recommendation-content-full');
+                        contentContainer.innerHTML = '';
+                        contentContainer.appendChild(preview);
+                        contentContainer.appendChild(fullContent);
                     }
                 });
                 
-                console.log('Fast mobile recommendations - full content visible');
+                console.log('Ultra-fast mobile recommendations loaded!');
             }
         }
 
-        // Run immediately for fastest loading
-        document.addEventListener('DOMContentLoaded', function() {
-            fastMobileRecommendations();
-        });
+        // Immediate execution for fastest loading
+        if (window.innerWidth <= 768) {
+            document.addEventListener('DOMContentLoaded', function() {
+                // Run immediately without delay
+                ultraFastMobileRecommendations();
+            });
+        }
 
+        // Run both optimizations
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(forceTextToFit, 100);
+            setTimeout(optimizeRecommendationsForMobile, 200);
+        });
+        
         window.addEventListener('resize', function() {
-            fastMobileRecommendations();
+            setTimeout(forceTextToFit, 100);
+        });
+        
+        window.addEventListener('orientationchange', function() {
+            setTimeout(forceTextToFit, 300);
         });
 
         // Dynamic text sizing based on screen dimensions
