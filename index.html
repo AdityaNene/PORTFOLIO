@@ -1881,6 +1881,63 @@
             }
         }
 
+        // Dynamic text sizing based on screen dimensions
+        function adjustTextForScreen() {
+            const viewportWidth = window.innerWidth;
+            const viewportHeight = window.innerHeight;
+            const heroText = document.querySelector('.hero-text');
+            const h1 = document.querySelector('.hero-text h1');
+            const subtitle = document.querySelector('.hero-text .subtitle');
+            const paragraph = document.querySelector('.hero-text p');
+            
+            if (heroText && h1 && subtitle && paragraph) {
+                // Calculate optimal font sizes based on viewport
+                let h1Size, subtitleSize, paragraphSize;
+                
+                if (viewportWidth <= 320) {
+                    // Very small phones
+                    h1Size = Math.max(16, viewportWidth * 0.055) + 'px';
+                    subtitleSize = Math.max(12, viewportWidth * 0.038) + 'px';
+                    paragraphSize = Math.max(10, viewportWidth * 0.032) + 'px';
+                } else if (viewportWidth <= 480) {
+                    // Small phones
+                    h1Size = Math.max(18, viewportWidth * 0.06) + 'px';
+                    subtitleSize = Math.max(14, viewportWidth * 0.042) + 'px';
+                    paragraphSize = Math.max(12, viewportWidth * 0.035) + 'px';
+                } else if (viewportWidth <= 768) {
+                    // Tablets and large phones
+                    h1Size = Math.max(24, viewportWidth * 0.065) + 'px';
+                    subtitleSize = Math.max(16, viewportWidth * 0.045) + 'px';
+                    paragraphSize = Math.max(14, viewportWidth * 0.038) + 'px';
+                } else {
+                    // Desktop - use CSS defaults
+                    h1.style.fontSize = '';
+                    subtitle.style.fontSize = '';
+                    paragraph.style.fontSize = '';
+                    return;
+                }
+                
+                // Apply calculated sizes
+                h1.style.fontSize = h1Size;
+                subtitle.style.fontSize = subtitleSize;
+                paragraph.style.fontSize = paragraphSize;
+                
+                // Ensure text fits within container
+                heroText.style.maxWidth = '100%';
+                heroText.style.overflow = 'hidden';
+                heroText.style.wordWrap = 'break-word';
+                
+                console.log(`Screen: ${viewportWidth}px, H1: ${h1Size}, Subtitle: ${subtitleSize}, Text: ${paragraphSize}`);
+            }
+        }
+
+        // Run on load and resize
+        document.addEventListener('DOMContentLoaded', adjustTextForScreen);
+        window.addEventListener('resize', adjustTextForScreen);
+        window.addEventListener('orientationchange', function() {
+            setTimeout(adjustTextForScreen, 100);
+        });
+
         // Performance optimization for mobile
         function optimizeForMobile() {
             if (window.innerWidth <= 768) {
