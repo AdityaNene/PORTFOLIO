@@ -796,15 +796,7 @@
             font-weight: bold;
         }
 
-        /* Recommendations - Full Display */
-        .recommendations-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 3rem;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
+        /* Performance Optimizations */
         .recommendation-card-full {
             background: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(20px);
@@ -814,6 +806,37 @@
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
+            
+            /* Performance optimizations */
+            will-change: transform;
+            backface-visibility: hidden;
+            transform: translateZ(0);
+        }
+
+        /* Reduce animations on mobile for better performance */
+        @media (max-width: 768px) {
+            .recommendation-card-full {
+                transition: transform 0.2s ease;
+                backdrop-filter: blur(10px);
+            }
+            
+            .recommendation-card-full:hover {
+                transform: translateY(-2px);
+            }
+            
+            /* Disable complex animations on mobile */
+            * {
+                animation-duration: 0.3s !important;
+                transition-duration: 0.3s !important;
+            }
+            
+            .hero-image::before {
+                display: none; /* Remove rotating glow on mobile */
+            }
+            
+            .decoration-circle {
+                display: none; /* Remove floating decorations on mobile */
+            }
         }
 
         .recommendation-card-full:hover {
@@ -1857,6 +1880,54 @@
                 document.getElementById('photoFallback').style.display = 'flex';
             }
         }
+
+        // Performance optimization for mobile
+        function optimizeForMobile() {
+            if (window.innerWidth <= 768) {
+                // Lazy load recommendation content
+                const recommendationCards = document.querySelectorAll('.recommendation-card-full');
+                
+                const observerOptions = {
+                    threshold: 0.1,
+                    rootMargin: '50px 0px'
+                };
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('loaded');
+                            // Add smooth animation
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, observerOptions);
+                
+                recommendationCards.forEach(card => {
+                    // Set initial state for animation
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
+                    card.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+                    observer.observe(card);
+                });
+                
+                // Optimize images for mobile
+                const images = document.querySelectorAll('.recommender-photo');
+                images.forEach(img => {
+                    if (img.src.includes('placeholder')) {
+                        img.style.display = 'none';
+                    }
+                });
+                
+                // Reduce animation complexity on mobile
+                document.body.style.setProperty('--animation-duration', '0.2s');
+            }
+        }
+
+        // Call optimization on load and resize
+        document.addEventListener('DOMContentLoaded', optimizeForMobile);
+        window.addEventListener('resize', optimizeForMobile);
 
         // Mobile menu functionality
         function toggleMobileMenu() {
