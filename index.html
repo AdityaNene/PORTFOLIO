@@ -1365,14 +1365,7 @@
                         <img id="heroPhoto" src="https://i.imgur.com/4fXYehe.jpeg" alt="Aditya Nene Graduation Photo" onload="imageLoaded()" onerror="tryNextImage(this)">
                         
                         <!-- Fallback content when no image loads -->
-                        <div id="photoFallback" style="color: white; padding: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
-                            <div style="font-size: 4rem; margin-bottom: 1rem;">🎓</div>
-                            <p style="font-weight: 600; margin-bottom: 0.5rem; font-size: 1.2rem;">Aditya Nene</p>
-                            <p style="font-size: 1rem; opacity: 0.8; text-align: center; line-height: 1.4;">
-                                MS in Information Technology<br>
-                                Worcester Polytechnic Institute<br>
-                                Class of 2025
-                            </p>
+                        <div id="photoFallback" style="display: none;">
                         </div>
                     </div>
                 </div>
@@ -1934,56 +1927,88 @@
             }
         }
 
-        // Fast recommendations loading for mobile
-        function optimizeRecommendationsForMobile() {
+        // Ultra-fast recommendations loading for mobile
+        function ultraFastMobileRecommendations() {
             if (window.innerWidth <= 768) {
-                const recommendationSection = document.getElementById('recommendations');
                 const recommendationCards = document.querySelectorAll('.recommendation-card-full');
                 
-                if (recommendationSection && recommendationCards.length > 0) {
-                    // Reduce content initially for faster loading
-                    recommendationCards.forEach((card, index) => {
-                        const letterContent = card.querySelector('.letter-content');
-                        if (letterContent) {
-                            // Hide detailed content initially
-                            letterContent.style.display = 'none';
-                            
-                            // Add a "Read More" button
-                            if (!card.querySelector('.mobile-read-more')) {
-                                const readMoreBtn = document.createElement('button');
-                                readMoreBtn.className = 'mobile-read-more';
-                                readMoreBtn.textContent = 'Read Full Letter';
-                                readMoreBtn.style.cssText = `
-                                    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-                                    color: white;
-                                    border: none;
-                                    padding: 0.8rem 1.5rem;
-                                    border-radius: 25px;
-                                    font-size: 0.9rem;
-                                    font-weight: 600;
-                                    cursor: pointer;
-                                    margin-top: 1rem;
-                                    width: 100%;
-                                `;
-                                
-                                readMoreBtn.addEventListener('click', function() {
-                                    if (letterContent.style.display === 'none') {
-                                        letterContent.style.display = 'block';
-                                        this.textContent = 'Hide Letter';
-                                    } else {
-                                        letterContent.style.display = 'none';
-                                        this.textContent = 'Read Full Letter';
-                                    }
-                                });
-                                
-                                card.querySelector('.recommendation-content-full').appendChild(readMoreBtn);
-                            }
-                        }
-                    });
+                recommendationCards.forEach((card, index) => {
+                    const letterContent = card.querySelector('.letter-content');
+                    const recommenderDetails = card.querySelector('.recommender-details');
                     
-                    console.log('Mobile recommendations optimized - content hidden for faster loading');
-                }
+                    if (letterContent && recommenderDetails) {
+                        // Hide all heavy content immediately
+                        letterContent.style.display = 'none';
+                        recommenderDetails.style.display = 'none';
+                        
+                        // Create super simple preview
+                        const preview = document.createElement('div');
+                        preview.className = 'mobile-preview';
+                        preview.innerHTML = `
+                            <p style="font-size: 0.8rem; color: #cbd5e1; margin: 0.5rem 0; font-style: italic;">
+                                "${letterContent.querySelector('p')?.textContent.substring(0, 80)}..."
+                            </p>
+                            <button style="
+                                background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+                                color: white;
+                                border: none;
+                                padding: 0.7rem 1.5rem;
+                                border-radius: 20px;
+                                font-size: 0.8rem;
+                                font-weight: 600;
+                                cursor: pointer;
+                                width: 100%;
+                                margin-top: 0.5rem;
+                                transition: all 0.2s ease;
+                            " onclick="this.parentElement.nextElementSibling.style.display='block'; this.parentElement.style.display='none';">
+                                📖 Read Full Letter
+                            </button>
+                        `;
+                        
+                        // Create full content container (hidden)
+                        const fullContent = document.createElement('div');
+                        fullContent.className = 'mobile-full-content';
+                        fullContent.style.display = 'none';
+                        fullContent.appendChild(recommenderDetails.cloneNode(true));
+                        fullContent.appendChild(letterContent.cloneNode(true));
+                        
+                        const hideButton = document.createElement('button');
+                        hideButton.innerHTML = '↑ Hide Letter';
+                        hideButton.style.cssText = `
+                            background: rgba(255, 255, 255, 0.1);
+                            color: #cbd5e1;
+                            border: 1px solid rgba(255, 255, 255, 0.2);
+                            padding: 0.5rem 1rem;
+                            border-radius: 15px;
+                            font-size: 0.75rem;
+                            cursor: pointer;
+                            width: 100%;
+                            margin-top: 1rem;
+                        `;
+                        hideButton.onclick = function() {
+                            fullContent.style.display = 'none';
+                            preview.style.display = 'block';
+                        };
+                        fullContent.appendChild(hideButton);
+                        
+                        // Replace original content
+                        const contentContainer = card.querySelector('.recommendation-content-full');
+                        contentContainer.innerHTML = '';
+                        contentContainer.appendChild(preview);
+                        contentContainer.appendChild(fullContent);
+                    }
+                });
+                
+                console.log('Ultra-fast mobile recommendations loaded!');
             }
+        }
+
+        // Immediate execution for fastest loading
+        if (window.innerWidth <= 768) {
+            document.addEventListener('DOMContentLoaded', function() {
+                // Run immediately without delay
+                ultraFastMobileRecommendations();
+            });
         }
 
         // Run both optimizations
