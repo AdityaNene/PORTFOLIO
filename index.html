@@ -1909,6 +1909,60 @@
             }
         }
 
+        // Mobile menu functionality
+        function toggleMobileMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            const menuBtn = document.querySelector('.mobile-menu-btn');
+            
+            if (navLinks.style.display === 'flex') {
+                navLinks.style.display = 'none';
+                menuBtn.innerHTML = '☰';
+            } else {
+                navLinks.style.display = 'flex';
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '100%';
+                navLinks.style.left = '0';
+                navLinks.style.right = '0';
+                navLinks.style.background = 'rgba(15, 23, 42, 0.98)';
+                navLinks.style.padding = '2rem';
+                navLinks.style.backdropFilter = 'blur(20px)';
+                navLinks.style.borderTop = '1px solid rgba(59, 130, 246, 0.2)';
+                menuBtn.innerHTML = '✕';
+            }
+        }
+
+        // Close mobile menu when clicking on links
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-links a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth <= 768) {
+                        toggleMobileMenu();
+                    }
+                });
+            });
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            const navLinks = document.querySelector('.nav-links');
+            const menuBtn = document.querySelector('.mobile-menu-btn');
+            
+            if (window.innerWidth > 768) {
+                navLinks.style.display = 'flex';
+                navLinks.style.flexDirection = 'row';
+                navLinks.style.position = 'static';
+                navLinks.style.background = 'none';
+                navLinks.style.padding = '0';
+                navLinks.style.backdropFilter = 'none';
+                navLinks.style.borderTop = 'none';
+                menuBtn.innerHTML = '☰';
+            } else {
+                navLinks.style.display = 'none';
+            }
+        });
+
         // Scroll Progress Indicator
         function updateScrollProgress() {
             const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
