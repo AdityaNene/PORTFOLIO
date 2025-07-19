@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aditya Rajesh Nene - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #e2e8f0;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: #3b82f6;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: radial-gradient(ellipse at center, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+            padding-top: 80px;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 4rem;
+            align-items: center;
+            width: 100%;
+        }
+
+        .hero-text {
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #f1f5f9, #cbd5e1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-text .subtitle {
+            font-size: 1.5rem;
+            color: #3b82f6;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            color: #94a3b8;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(59, 130, 246, 0.4);
+        }
+
+        .hero-image {
+            width: 300px;
+            height: 400px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            border: 3px solid rgba(59, 130, 246, 0.3);
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            text-align: center;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, #f1f5f9, #cbd5e1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Education */
+        .education-grid {
+            display: grid;
+            gap: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .education-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .education-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .education-card h3 {
+            color: #3b82f6;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-card .institution {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-card .period {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .gpa {
+            color: #10b981;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .coursework {
+            margin-top: 1rem;
+        }
+
+        .coursework h4 {
+            color: #8b5cf6;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .course-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 0.5rem;
+            list-style: none;
+        }
+
+        .course-list li {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            color: #93c5fd;
+            padding: 0.5rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+        }
+
+        /* Skills */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+        }
+
+        .skill-category h3 {
+            color: #3b82f6;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            color: #93c5fd;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Experience */
+        .experience-timeline {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .experience-item {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .experience-item:hover {
+            transform: translateX(10px);
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .experience-title {
+            color: #3b82f6;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .experience-company {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-period {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .experience-achievements {
+            list-style: none;
+        }
+
+        .experience-achievements li {
+            margin-bottom: 0.75rem;
+            padding-left: 1.5rem;
+            position: relative;
+            color: #cbd5e1;
+        }
+
+        .experience-achievements li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #3b82f6;
+            font-weight: bold;
+        }
+
+        /* Contact */
+        .contact-info {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #cbd5e1;
+            text-decoration: none;
+            padding: 1rem 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .contact-link:hover {
+            color: #3b82f6;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.2);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .hero-text h1 { font-size: 2.5rem; }
+            .hero-text .subtitle { font-size: 1.2rem; }
+            .nav-links { display: none; }
+            .contact-links { flex-direction: column; align-items: center; }
+            .experience-header { flex-direction: column; }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Background pattern */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">Aditya Nene</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1>Aditya Rajesh Nene</h1>
+                        <div class="subtitle">Data Engineer & AI Research Assistant</div>
+                        <p>Passionate about building intelligent data solutions and developing cutting-edge AI systems. Currently pursuing MS in Information Technology at Worcester Polytechnic Institute with expertise in data engineering, machine learning, and full-stack development.</p>
+                        <a href="#contact" class="cta-button">Get In Touch</a>
+                    </div>
+                    
+                    <div class="hero-image">
+                        <!-- Graduation photo from Imgur - correct direct URL -->
+                        <img id="heroPhoto" src="https://i.imgur.com/4fXYehe.jpeg" alt="Aditya Nene Graduation Photo" onload="imageLoaded()" onerror="tryNextImage(this)">
+                        
+                        <!-- Fallback content when no image loads -->
+                        <div id="photoFallback" style="color: white; padding: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
+                            <div style="font-size: 3rem; margin-bottom: 1rem;">🎓</div>
+                            <p style="font-weight: 600; margin-bottom: 0.5rem;">Loading Photo...</p>
+                            <p style="font-size: 0.8rem; opacity: 0.7; text-align: center; line-height: 1.4;">
+                                Graduation Photo<br>
+                                WPI Class of 2025
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="education">
+            <div class="container">
+                <h2 class="section-title">Education</h2>
+                <div class="education-grid">
+                    <div class="education-card">
+                        <h3>Master of Science in Information Technology</h3>
+                        <div class="institution">Worcester Polytechnic Institute, Worcester, MA</div>
+                        <div class="period">Aug 2023 – May 2025</div>
+                        <div class="gpa">Cumulative GPA: 3.81/4.0</div>
+                        <div style="margin-bottom: 0.5rem;"><strong>Concentrations:</strong> Data Analytics, Information Systems Design</div>
+                        
+                        <div class="coursework">
+                            <h4>Key Coursework:</h4>
+                            <ul class="course-list">
+                                <li>Data Management for Analytics</li>
+                                <li>User Experience Design</li>
+                                <li>Business Applications in Machine Learning</li>
+                                <li>Database Applications Design & Development</li>
+                                <li>Policy & Strategy for IT and Analytics</li>
+                                <li>Digital and Social Media Marketing</li>
+                                <li>Information Security Management</li>
+                                <li>Business Intelligence</li>
+                                <li>Marketing Analytics</li>
+                                <li>System Design and Development</li>
+                                <li>Teaming and Organizing for Innovation</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="education-card">
+                        <h3>Bachelor of Engineering in Computer Engineering</h3>
+                        <div class="institution">Savitribai Phule Pune University, Pune, India</div>
+                        <div class="period">Aug 2019 – Jul 2023</div>
+                        <div class="gpa">CGPA: 8.95/10</div>
+                    </div>
+                    
+                    <div class="education-card">
+                        <h3>Honors in Data Science and Visualization</h3>
+                        <div class="institution">Savitribai Phule Pune University, Pune, India</div>
+                        <div class="period">Aug 2022 – Jul 2023</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills">
+            <div class="container">
+                <h2 class="section-title">Technical Skills</h2>
+                <div class="skills-container">
+                    <div class="skill-category">
+                        <h3>Data Engineering & Analytics</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">Pandas</span>
+                            <span class="skill-tag">NumPy</span>
+                            <span class="skill-tag">SQL</span>
+                            <span class="skill-tag">MongoDB Atlas</span>
+                            <span class="skill-tag">Data Pipeline Development</span>
+                            <span class="skill-tag">Real-Time Analytics</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3>Machine Learning & AI</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">NLP</span>
+                            <span class="skill-tag">Supervised Learning</span>
+                            <span class="skill-tag">LLM Development</span>
+                            <span class="skill-tag">Data Modeling</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3>Visualization & Analytics Tools</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Power BI</span>
+                            <span class="skill-tag">Tableau</span>
+                            <span class="skill-tag">Microsoft Excel</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3>Design & Development</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Figma</span>
+                            <span class="skill-tag">UI/UX Design</span>
+                            <span class="skill-tag">Wireframing</span>
+                            <span class="skill-tag">Front-End Design</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3>IoT & Cloud Technologies</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">MQTT</span>
+                            <span class="skill-tag">Zigbee2MQTT</span>
+                            <span class="skill-tag">Cloud Monitoring</span>
+                            <span class="skill-tag">Cloud-Based Workflows</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience">
+            <div class="container">
+                <h2 class="section-title">Work Experience</h2>
+                <div class="experience-timeline">
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <div>
+                                <div class="experience-title">Research Assistant</div>
+                                <div class="experience-company">Worcester Polytechnic Institute, Worcester, MA</div>
+                            </div>
+                            <div class="experience-period">Aug 2024 – Present</div>
+                        </div>
+                        <ul class="experience-achievements">
+                            <li>Developed a proprietary grading LLM using NLP and supervised learning that reduced grading time by 60% and improved feedback quality by 32%</li>
+                            <li>Created and deployed an AI chatbot enabling 50+ students to submit assignments with dynamic cross-questioning</li>
+                            <li>Led UI/UX design in Figma and launched WPI's official System Engineering website, increasing traffic by 45%</li>
+                        </ul>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <div>
+                                <div class="experience-title">Front-End Developer</div>
+                                <div class="experience-company">Building Assure, Concord, MA</div>
+                            </div>
+                            <div class="experience-period">Jun 2025 – Aug 2025</div>
+                        </div>
+                        <ul class="experience-achievements">
+                            <li>Processed and transformed large-scale datasets using Python, reducing preprocessing time by 40%</li>
+                            <li>Created interactive Power BI dashboards delivering real-time insights, enhancing decision-making efficiency by 35%</li>
+                            <li>Designed front-end interface in Figma and created complete system flow for seamless user experience</li>
+                        </ul>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <div>
+                                <div class="experience-title">Data Engineer</div>
+                                <div class="experience-company">Cool Green Power LLC, Boston, MA</div>
+                            </div>
+                            <div class="experience-period">Jan 2025 – May 2025</div>
+                        </div>
+                        <ul class="experience-achievements">
+                            <li>Built complete IoT data pipeline collecting Zigbee2MQTT sensor data via Raspberry Pi into MongoDB Atlas</li>
+                            <li>Implemented efficient data modeling and cloud-based ingestion workflows for 24/7 real-time analytics</li>
+                            <li>Automated system services and monitoring, achieving 90% reduction in downtime and 85% decrease in error handling</li>
+                        </ul>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <div>
+                                <div class="experience-title">Market Research Analyst</div>
+                                <div class="experience-company">Beggars for Some Soul, Worcester, MA</div>
+                            </div>
+                            <div class="experience-period">Dec 2023 – May 2024</div>
+                        </div>
+                        <ul class="experience-achievements">
+                            <li>Boosted brand subscribers from 182 to 11.3K through targeted social media strategies and SEO-driven content</li>
+                            <li>Analyzed platform-specific trends and A/B testing, raising brand visibility by 25%</li>
+                            <li>Strengthened customer loyalty through community engagement, improving retention by 20%</li>
+                        </ul>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <div>
+                                <div class="experience-title">Business Analyst and Strategist</div>
+                                <div class="experience-company">Green Pharmacy, Pune, India</div>
+                            </div>
+                            <div class="experience-period">Jul 2022 – Dec 2022</div>
+                        </div>
+                        <ul class="experience-achievements">
+                            <li>Analyzed 100K+ lab records using SQL and Python to identify top-performing SKUs and flag anomalies</li>
+                            <li>Achieved 25% increase in quality control accuracy and 20% reduction in inventory discrepancies</li>
+                            <li>Built interactive Power BI dashboards improving supply chain efficiency and stakeholder decision-making</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container">
+                <h2 class="section-title">Let's Connect</h2>
+                <div class="contact-info">
+                    <p style="font-size: 1.1rem; margin-bottom: 2rem; color: #94a3b8;">
+                        I'm always interested in discussing new opportunities, collaborations, or innovative projects in data engineering and AI.
+                    </p>
+                    <div class="contact-links">
+                        <a href="mailto:anene@wpi.edu" class="contact-link">
+                            <span>📧</span>
+                            <span>anene@wpi.edu</span>
+                        </a>
+                        <a href="tel:+15083733922" class="contact-link">
+                            <span>📱</span>
+                            <span>(508) 373-3922</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/aditya-nene-41350b246/" target="_blank" class="contact-link">
+                            <span>💼</span>
+                            <span>LinkedIn</span>
+                        </a>
+                    </div>
+                    <p style="margin-top: 2rem; color: #64748b;">
+                        📍 Worcester, Massachusetts
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Image loading success function
+        function imageLoaded() {
+            console.log('Image loaded successfully!');
+            document.getElementById('photoFallback').style.display = 'none';
+            document.getElementById('heroPhoto').style.display = 'block';
+        }
+
+        // Image loading fallback function
+        function tryNextImage(img) {
+            const alternatives = [
+                'https://i.imgur.com/4fXYehe.jpg',
+                'https://i.imgur.com/4fXYehe.png'
+            ];
+            
+            const currentSrc = img.src;
+            let nextIndex = 0;
+            
+            // Find current index and move to next
+            for (let i = 0; i < alternatives.length; i++) {
+                if (currentSrc.includes(alternatives[i].split('.')[0])) {
+                    nextIndex = i + 1;
+                    break;
+                }
+            }
+            
+            if (nextIndex < alternatives.length) {
+                console.log('Trying next image format:', alternatives[nextIndex]);
+                img.src = alternatives[nextIndex];
+            } else {
+                // All alternatives failed, hide image and show fallback
+                console.log('Image failed to load, showing fallback');
+                img.style.display = 'none';
+                document.getElementById('photoFallback').style.display = 'flex';
+            }
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to navigation
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(15, 23, 42, 0.95)';
+            } else {
+                header.style.background = 'rgba(15, 23, 42, 0.9)';
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections except hero
+        document.querySelectorAll('section:not(.hero)').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
