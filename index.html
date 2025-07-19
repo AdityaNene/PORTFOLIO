@@ -1041,6 +1041,13 @@
             box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7), 0 0 50px rgba(59, 130, 246, 0.2);
             position: relative;
             animation: modalSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            
+            /* Center the modal properly */
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            margin: 0;
         }
 
         .modal-content::before {
@@ -1610,104 +1617,126 @@
 
             <!-- Modal 1 - Cool Green Power -->
             <div id="modal1" class="modal">
-                <div class="modal-content">
-                    <span class="close" onclick="closeModal('modal1')">&times;</span>
-                    <div class="modal-header">
-                        <img src="https://i.imgur.com/placeholder-josef.jpg" alt="Josef C. Mueller" class="modal-photo" onerror="this.style.display='none';">
-                        <div class="modal-info">
-                            <h3>Josef C. Mueller</h3>
-                            <div class="modal-role">CEO & Founder, Cool Green Power LLC</div>
-                            <div class="modal-date">April 11, 2025</div>
+                <div class="modal-overlay" onclick="closeModal('modal1')">
+                    <div class="modal-wrapper">
+                        <div class="modal-content" onclick="event.stopPropagation()">
+                            <span class="close" onclick="closeModal('modal1')">&times;</span>
+                            <div class="modal-header">
+                                <img src="https://i.imgur.com/placeholder-josef.jpg" alt="Josef C. Mueller" class="modal-photo" onerror="this.style.display='none';">
+                                <div class="modal-info">
+                                    <h3>Josef C. Mueller</h3>
+                                    <div class="modal-role">CEO & Founder, Cool Green Power LLC</div>
+                                    <div class="modal-date">April 11, 2025</div>
+                                </div>
+                            </div>
+                            <div class="modal-text">
+                                <p>This is a reference letter that can be used to confirm Aditya's student internship with CoolGreenPower LLC during the Spring of 2025.</p>
+                                
+                                <p>Specifically, Aditya was employed for 12 weeks as a Software Engineering Intern – Spring 2025 (Paid-Remote). Aditya was compensated at an hourly rate of $18, paid on a biweekly basis. The internship ran for 12 consecutive weeks, beginning on January 13, 2025, and completing on April 4, 2025, compliant with MassCEC guidelines. The hours worked during the 12-week period totaled 240 hours. Aditya reported to Gordon Davidson.</p>
+                                
+                                <p>Aditya had the opportunity to gain skills and experience while working on the following specific assignments:</p>
+                                <ul style="color: #cbd5e1; margin: 1rem 0 1rem 2rem;">
+                                    <li>Designed and implemented a CI/CD pipeline using Node.js and MQTT to transfer and process data from Zigbee-enabled sensors to MongoDB Atlas in real time.</li>
+                                    <li>Contributed to other internal projects, including marketing-related tasks and the development of interactive dashboards for energy usage insights.</li>
+                                </ul>
+                                
+                                <p>We hope Aditya gained valuable skills and experience for future employment opportunities.</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="modal-text">
-                        <p>This is a reference letter that can be used to confirm Aditya's student internship with CoolGreenPower LLC during the Spring of 2025.</p>
-                        
-                        <p>Specifically, Aditya was employed for 12 weeks as a Software Engineering Intern – Spring 2025 (Paid-Remote). Aditya was compensated at an hourly rate of $18, paid on a biweekly basis. The internship ran for 12 consecutive weeks, beginning on January 13, 2025, and completing on April 4, 2025, compliant with MassCEC guidelines. The hours worked during the 12-week period totaled 240 hours. Aditya reported to Gordon Davidson.</p>
-                        
-                        <p>Aditya had the opportunity to gain skills and experience while working on the following specific assignments:</p>
-                        <ul style="color: #cbd5e1; margin: 1rem 0 1rem 2rem;">
-                            <li>Designed and implemented a CI/CD pipeline using Node.js and MQTT to transfer and process data from Zigbee-enabled sensors to MongoDB Atlas in real time.</li>
-                            <li>Contributed to other internal projects, including marketing-related tasks and the development of interactive dashboards for energy usage insights.</li>
-                        </ul>
-                        
-                        <p>We hope Aditya gained valuable skills and experience for future employment opportunities.</p>
                     </div>
                 </div>
             </div>
 
             <!-- Modal 2 - Green Pharmacy -->
             <div id="modal2" class="modal">
-                <div class="modal-content">
-                    <span class="close" onclick="closeModal('modal2')">&times;</span>
-                    <div class="modal-header">
-                        <img src="https://i.imgur.com/placeholder-amod.jpg" alt="Dr. Amod Sane" class="modal-photo" onerror="this.style.display='none';">
-                        <div class="modal-info">
-                            <h3>Dr. Amod Sane</h3>
-                            <div class="modal-role">Proprietor, Green Pharmacy</div>
-                            <div class="modal-date">February 2, 2023</div>
+                <div class="modal-overlay" onclick="closeModal('modal2')">
+                    <div class="modal-wrapper">
+                        <div class="modal-content" onclick="event.stopPropagation()">
+                            <span class="close" onclick="closeModal('modal2')">&times;</span>
+                            <div class="modal-header">
+                                <img src="https://i.imgur.com/placeholder-amod.jpg" alt="Dr. Amod Sane" class="modal-photo" onerror="this.style.display='none';">
+                                <div class="modal-info">
+                                    <h3>Dr. Amod Sane</h3>
+                                    <div class="modal-role">Proprietor, Green Pharmacy</div>
+                                    <div class="modal-date">February 2, 2023</div>
+                                </div>
+                            </div>
+                            <div class="modal-text">
+                                <p>I am pleased to write this Letter of Recommendation for Mr. Aditya Rajesh Nene, who served as a Business Analyst and Strategist during his internship at Green Pharmacy from July 2022 to December 2022.</p>
+                                
+                                <p>Aditya's contribution to our team was exemplary. His exceptional analytical skills, strategic thinking, and profound understanding of business dynamics were evident throughout his tenure. His efforts played a crucial role in the success of various projects, showcasing a commitment to excellence in every aspect of his work.</p>
+                                
+                                <p>Aditya consistently demonstrated a high level of professionalism, exceptional teamwork, and adaptability to different challenges. His ability to communicate complex ideas, both in writing and verbally, was impressive. Aditya's reports and presentations were clear, concise, and well researched, reflecting a deep understanding of the subject matter.</p>
+                                
+                                <p>In summary, Aditya Rajesh Nene is a talented and dedicated individual with immense potential in the field of business analysis and strategy. I have no doubt that he will continue to excel in his future endeavours.</p>
+                                
+                                <p>I wholeheartedly recommend Aditya for any opportunities he pursues and wish him continued success.</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="modal-text">
-                        <p>I am pleased to write this Letter of Recommendation for Mr. Aditya Rajesh Nene, who served as a Business Analyst and Strategist during his internship at Green Pharmacy from July 2022 to December 2022.</p>
-                        
-                        <p>Aditya's contribution to our team was exemplary. His exceptional analytical skills, strategic thinking, and profound understanding of business dynamics were evident throughout his tenure. His efforts played a crucial role in the success of various projects, showcasing a commitment to excellence in every aspect of his work.</p>
-                        
-                        <p>Aditya consistently demonstrated a high level of professionalism, exceptional teamwork, and adaptability to different challenges. His ability to communicate complex ideas, both in writing and verbally, was impressive. Aditya's reports and presentations were clear, concise, and well researched, reflecting a deep understanding of the subject matter.</p>
-                        
-                        <p>In summary, Aditya Rajesh Nene is a talented and dedicated individual with immense potential in the field of business analysis and strategy. I have no doubt that he will continue to excel in his future endeavours.</p>
-                        
-                        <p>I wholeheartedly recommend Aditya for any opportunities he pursues and wish him continued success.</p>
                     </div>
                 </div>
             </div>
 
             <!-- Modal 3 - Academic -->
             <div id="modal3" class="modal">
-                <div class="modal-content">
-                    <span class="close" onclick="closeModal('modal3')">&times;</span>
-                    <div class="modal-header">
-                        <img src="https://i.imgur.com/placeholder-ganesh.jpg" alt="Mr. Ganesh S. Wayal" class="modal-photo" onerror="this.style.display='none';">
-                        <div class="modal-info">
-                            <h3>Mr. Ganesh S. Wayal</h3>
-                            <div class="modal-role">Head, Computer Engineering Department</div>
-                            <div class="modal-date">Padmabhooshan Vasantdada Patil Institute</div>
+                <div class="modal-overlay" onclick="closeModal('modal3')">
+                    <div class="modal-wrapper">
+                        <div class="modal-content" onclick="event.stopPropagation()">
+                            <span class="close" onclick="closeModal('modal3')">&times;</span>
+                            <div class="modal-header">
+                                <img src="https://i.imgur.com/placeholder-ganesh.jpg" alt="Mr. Ganesh S. Wayal" class="modal-photo" onerror="this.style.display='none';">
+                                <div class="modal-info">
+                                    <h3>Mr. Ganesh S. Wayal</h3>
+                                    <div class="modal-role">Head, Computer Engineering Department</div>
+                                    <div class="modal-date">Padmabhooshan Vasantdada Patil Institute</div>
+                                </div>
+                            </div>
+                            <div class="modal-text">
+                                <p>I feel elated to write this letter of recommendation for Mr. Aditya Nene's application to your esteemed university. I am the Head of Computer Engineering Department, at Padmabhooshan Vasantdada Patil Institute of Technology. As Aditya's mentor and lecturer, I have found him to be a passionate, cheerful, and hardworking student.</p>
+                                
+                                <p>I am currently teaching him a Machine Learning course as a part of the university curriculum. Aditya uses his knowledge wisely while working on his mini-projects and comes up with innovative ideas. Looking at his academic performance and his determination to succeed, I suggested him to take up an Honors degree in Data Science and Visualization conducted by Savitribai Phule Pune University. He is currently pursuing that program under my guidance.</p>
+                                
+                                <p>Last year he delivered a seminar on the topic of Quantum Computing. He did his research well and was able to deliver his topic perfectly. He explained all the related terms to his peers which makes him a fine speaker having good communication and presentation skills.</p>
+                                
+                                <p>Besides his academics, I have seen Aditya being involved in extra-curricular activities as well. He has participated in several cultural events as he plays various musical instruments. He has assisted in arranging various events in college such as sports and annual concerts. In my opinion, he is a good leader and tries to handle tough situations with utmost care and confidence. Whenever he comes across any failures or challenges, he positively faces them and tries to improve. This speaks of his adaptable nature and willingness to learn.</p>
+                                
+                                <p>Aditya's overall behavior, skill set, and strong character make him an apt candidate for your esteemed university. I can confidently say that Aditya Nene will do well in whichever course he chooses and contribute to the best of his ability toward the University.</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="modal-text">
-                        <p>I feel elated to write this letter of recommendation for Mr. Aditya Nene's application to your esteemed university. I am the Head of Computer Engineering Department, at Padmabhooshan Vasantdada Patil Institute of Technology. As Aditya's mentor and lecturer, I have found him to be a passionate, cheerful, and hardworking student.</p>
-                        
-                        <p>I am currently teaching him a Machine Learning course as a part of the university curriculum. Aditya uses his knowledge wisely while working on his mini-projects and comes up with innovative ideas. Looking at his academic performance and his determination to succeed, I suggested him to take up an Honors degree in Data Science and Visualization conducted by Savitribai Phule Pune University. He is currently pursuing that program under my guidance.</p>
-                        
-                        <p>Last year he delivered a seminar on the topic of Quantum Computing. He did his research well and was able to deliver his topic perfectly. He explained all the related terms to his peers which makes him a fine speaker having good communication and presentation skills.</p>
-                        
-                        <p>Besides his academics, I have seen Aditya being involved in extra-curricular activities as well. He has participated in several cultural events as he plays various musical instruments. He has assisted in arranging various events in college such as sports and annual concerts. In my opinion, he is a good leader and tries to handle tough situations with utmost care and confidence. Whenever he comes across any failures or challenges, he positively faces them and tries to improve. This speaks of his adaptable nature and willingness to learn.</p>
-                        
-                        <p>Aditya's overall behavior, skill set, and strong character make him an apt candidate for your esteemed university. I can confidently say that Aditya Nene will do well in whichever course he chooses and contribute to the best of his ability toward the University.</p>
                     </div>
                 </div>
             </div>
 
             <!-- Modal 4 - Exposys -->
             <div id="modal4" class="modal">
-                <div class="modal-content">
-                    <span class="close" onclick="closeModal('modal4')">&times;</span>
-                    <div class="modal-header">
-                        <img src="https://i.imgur.com/placeholder-vishnu.jpg" alt="Y Vishnuvardhan" class="modal-photo" onerror="this.style.display='none';">
-                        <div class="modal-info">
-                            <h3>Y Vishnuvardhan</h3>
-                            <div class="modal-role">Chief Director, Exposys Data Labs</div>
-                            <div class="modal-date">March 6, 2022 - April 5, 2022</div>
+                <div class="modal-overlay" onclick="closeModal('modal4')">
+                    <div class="modal-wrapper">
+                        <div class="modal-content" onclick="event.stopPropagation()">
+                            <span class="close" onclick="closeModal('modal4')">&times;</span>
+                            <div class="modal-header">
+                                <img src="https://i.imgur.com/placeholder-vishnu.jpg" alt="Y Vishnuvardhan" class="modal-photo" onerror="this.style.display='none';">
+                                <div class="modal-info">
+                                    <h3>Y Vishnuvardhan</h3>
+                                    <div class="modal-role">Chief Director, Exposys Data Labs</div>
+                                    <div class="modal-date">March 6, 2022 - April 5, 2022</div>
+                                </div>
+                            </div>
+                            <div class="modal-text">
+                                <p><strong>TO WHOM IT MAY CONCERN</strong></p>
+                                
+                                <p>This is to certify that Mr. ADITYA NENE has completed internship programme on "Data Science" from 06.03.2022 to 05.04.2022.</p>
+                                
+                                <p>He took keen interest in the work assigned and successfully completed it. During the period of internship we found him to be punctual, hardworking and inquisitive.</p>
+                                
+                                <p>We wish him luck and success in all his future endeavours.</p>
+                                
+                                <p style="margin-top: 2rem; text-align: right; font-weight: 600;">
+                                    <strong>Y Vishnuvardhan<br>
+                                    Chief Director<br>
+                                    Exposys Data Labs</strong>
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="modal-text">
-                        <p><strong>TO WHOM IT MAY CONCERN</strong></p>
-                        
-                        <p>This is to certify that Mr. ADITYA NENE has completed internship programme on "Data Science" from 06.03.2022 to 05.04.2022.</p>
-                        
-                        <p>He took keen interest in the work assigned and successfully completed it. During the period of internship we found him to be punctual, hardworking and inquisitive.</p>
-                        
-                        <p>We wish him luck and success in all his future endeavours.</p>
                     </div>
                 </div>
             </div>
@@ -1743,41 +1772,38 @@
     </main>
 
     <script>
-        // Enhanced modal functionality with improved UX
+        // Simple and reliable modal system
         function openModal(modalId) {
             const modal = document.getElementById(modalId);
             modal.style.display = 'block';
             document.body.style.overflow = 'hidden';
             
-            // Add a slight delay for smoother animation
+            // Trigger animation after a brief delay
             setTimeout(() => {
-                modal.querySelector('.modal-content').style.transform = 'translateY(0) scale(1)';
+                modal.classList.add('show');
             }, 10);
         }
 
         function closeModal(modalId) {
             const modal = document.getElementById(modalId);
-            const modalContent = modal.querySelector('.modal-content');
+            modal.classList.remove('show');
             
-            // Animate out
-            modalContent.style.transform = 'translateY(-30px) scale(0.95)';
-            modalContent.style.opacity = '0';
-            
+            // Wait for animation to complete before hiding
             setTimeout(() => {
                 modal.style.display = 'none';
                 document.body.style.overflow = 'auto';
-                modalContent.style.transform = 'translateY(0) scale(1)';
-                modalContent.style.opacity = '1';
             }, 300);
         }
 
-        // Enhanced window click handler
-        window.onclick = function(event) {
-            if (event.target.classList.contains('modal')) {
-                const modalId = event.target.id;
-                closeModal(modalId);
+        // Close modal when clicking on overlay (but not on content)
+        document.addEventListener('click', function(event) {
+            if (event.target.classList.contains('modal-overlay')) {
+                const modal = event.target.closest('.modal');
+                if (modal) {
+                    closeModal(modal.id);
+                }
             }
-        }
+        });
 
         // Escape key to close modal
         document.addEventListener('keydown', function(event) {
