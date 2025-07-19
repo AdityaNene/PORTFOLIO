@@ -796,80 +796,55 @@
             font-weight: bold;
         }
 
-        /* Recommendations */
+        /* Recommendations - Full Display */
         .recommendations-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 2.5rem;
-            max-width: 1200px;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            max-width: 900px;
             margin: 0 auto;
         }
 
-        .recommendation-card {
+        .recommendation-card-full {
             background: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: 24px;
             padding: 2.5rem;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
             position: relative;
             overflow: hidden;
         }
 
-        .recommendation-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transition: left 0.6s ease;
-        }
-
-        .recommendation-card:hover::before {
-            left: 100%;
-        }
-
-        .recommendation-card:hover {
-            transform: translateY(-8px) scale(1.02);
+        .recommendation-card-full:hover {
+            transform: translateY(-5px);
             box-shadow: 0 25px 50px rgba(59, 130, 246, 0.15), 0 0 30px rgba(139, 92, 246, 0.1);
             border-color: rgba(59, 130, 246, 0.3);
         }
 
         .recommendation-header {
             display: flex;
-            align-items: flex-start;
+            align-items: center;
             gap: 1.5rem;
             margin-bottom: 2rem;
-            position: relative;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(59, 130, 246, 0.2);
         }
 
         .recommender-photo {
-            width: 70px;
-            height: 70px;
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
             object-fit: cover;
             border: 3px solid transparent;
             background: linear-gradient(135deg, #3b82f6, #8b5cf6);
             padding: 3px;
-            transition: all 0.3s ease;
             box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
-        }
-
-        .recommendation-card:hover .recommender-photo {
-            transform: rotate(5deg) scale(1.1);
-            box-shadow: 0 12px 35px rgba(59, 130, 246, 0.4);
-        }
-
-        .recommendation-info {
-            flex: 1;
         }
 
         .recommendation-info h3 {
             color: #f1f5f9;
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             margin-bottom: 0.5rem;
             font-weight: 700;
             background: linear-gradient(135deg, #3b82f6, #8b5cf6);
@@ -883,37 +858,55 @@
             font-weight: 600;
             margin-bottom: 0.3rem;
             font-size: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .recommendation-role::before {
-            content: "💼";
-            font-size: 0.9rem;
         }
 
         .recommendation-date {
             color: #94a3b8;
             font-size: 0.9rem;
             font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
         }
 
-        .recommendation-date::before {
-            content: "📅";
-            font-size: 0.8rem;
+        .recommendation-content-full {
+            display: grid;
+            gap: 2rem;
         }
 
-        .company-badge {
-            position: absolute;
-            top: -10px;
-            right: -10px;
-            width: 30px;
-            height: 30px;
-            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+        .recommender-details {
+            background: rgba(59, 130, 246, 0.1);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid #3b82f6;
+            color: #e2e8f0;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .letter-content {
+            color: #e2e8f0;
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        .letter-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .letter-content p:first-child {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #f1f5f9;
+        }
+
+        .letter-content ul {
+            margin: 1.5rem 0;
+            padding-left: 2rem;
+            color: #cbd5e1;
+        }
+
+        .letter-content ul li {
+            margin-bottom: 0.8rem;
+            line-height: 1.6;
+        } #3b82f6, #8b5cf6);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -1553,7 +1546,7 @@
             <div class="container">
                 <h2 class="section-title">Letters of Recommendation</h2>
                 <div class="recommendations-grid">
-                    <div class="recommendation-card" onclick="openModal('modal1')">
+                    <div class="recommendation-card-full">
                         <div class="recommendation-header">
                             <img src="https://i.imgur.com/placeholder-josef.jpg" alt="Josef C. Mueller" class="recommender-photo" onerror="this.style.display='none';">
                             <div class="recommendation-info">
@@ -1562,80 +1555,19 @@
                                 <div class="recommendation-date">Spring 2025</div>
                             </div>
                         </div>
-                        <div class="recommendation-content">
-                            <p>"Aditya was employed for 12 weeks as a Software Engineering Intern. He designed and implemented a CI/CD pipeline using Node.js and MQTT to transfer and process data from Zigbee-enabled sensors to MongoDB Atlas in real time."</p>
-                            <button class="read-more-btn">Read Full Letter</button>
-                        </div>
-                    </div>
-
-                    <div class="recommendation-card" onclick="openModal('modal2')">
-                        <div class="recommendation-header">
-                            <img src="https://i.imgur.com/placeholder-amod.jpg" alt="Dr. Amod Sane" class="recommender-photo" onerror="this.style.display='none';">
-                            <div class="recommendation-info">
-                                <h3>Green Pharmacy</h3>
-                                <div class="recommendation-role">Business Analyst and Strategist</div>
-                                <div class="recommendation-date">July 2022 - December 2022</div>
+                        <div class="recommendation-content-full">
+                            <div class="recommender-details">
+                                <strong>Josef C. Mueller</strong><br>
+                                CEO & Founder, Cool Green Power LLC<br>
+                                April 11, 2025
                             </div>
-                        </div>
-                        <div class="recommendation-content">
-                            <p>"Aditya's contribution to our team was exemplary. His exceptional analytical skills, strategic thinking, and profound understanding of business dynamics were evident throughout his tenure."</p>
-                            <button class="read-more-btn">Read Full Letter</button>
-                        </div>
-                    </div>
-
-                    <div class="recommendation-card" onclick="openModal('modal3')">
-                        <div class="recommendation-header">
-                            <img src="https://i.imgur.com/placeholder-ganesh.jpg" alt="Mr. Ganesh S. Wayal" class="recommender-photo" onerror="this.style.display='none';">
-                            <div class="recommendation-info">
-                                <h3>Padmabhooshan Vasantdada Patil Institute</h3>
-                                <div class="recommendation-role">Academic Performance & Leadership</div>
-                                <div class="recommendation-date">Bachelor's Degree</div>
-                            </div>
-                        </div>
-                        <div class="recommendation-content">
-                            <p>"I have found him to be a passionate, cheerful, and hardworking student. Aditya uses his knowledge wisely while working on his mini-projects and comes up with innovative ideas."</p>
-                            <button class="read-more-btn">Read Full Letter</button>
-                        </div>
-                    </div>
-
-                    <div class="recommendation-card" onclick="openModal('modal4')">
-                        <div class="recommendation-header">
-                            <img src="https://i.imgur.com/placeholder-vishnu.jpg" alt="Y Vishnuvardhan" class="recommender-photo" onerror="this.style.display='none';">
-                            <div class="recommendation-info">
-                                <h3>Exposys Data Labs</h3>
-                                <div class="recommendation-role">Data Science Intern</div>
-                                <div class="recommendation-date">March 2022 - April 2022</div>
-                            </div>
-                        </div>
-                        <div class="recommendation-content">
-                            <p>"Mr. ADITYA NENE has completed internship programme on Data Science. He took keen interest in the work assigned and successfully completed it."</p>
-                            <button class="read-more-btn">Read Full Letter</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Modal 1 - Cool Green Power -->
-            <div id="modal1" class="modal">
-                <div class="modal-overlay" onclick="closeModal('modal1')">
-                    <div class="modal-wrapper">
-                        <div class="modal-content" onclick="event.stopPropagation()">
-                            <span class="close" onclick="closeModal('modal1')">&times;</span>
-                            <div class="modal-header">
-                                <img src="https://i.imgur.com/placeholder-josef.jpg" alt="Josef C. Mueller" class="modal-photo" onerror="this.style.display='none';">
-                                <div class="modal-info">
-                                    <h3>Josef C. Mueller</h3>
-                                    <div class="modal-role">CEO & Founder, Cool Green Power LLC</div>
-                                    <div class="modal-date">April 11, 2025</div>
-                                </div>
-                            </div>
-                            <div class="modal-text">
+                            <div class="letter-content">
                                 <p>This is a reference letter that can be used to confirm Aditya's student internship with CoolGreenPower LLC during the Spring of 2025.</p>
                                 
                                 <p>Specifically, Aditya was employed for 12 weeks as a Software Engineering Intern – Spring 2025 (Paid-Remote). Aditya was compensated at an hourly rate of $18, paid on a biweekly basis. The internship ran for 12 consecutive weeks, beginning on January 13, 2025, and completing on April 4, 2025, compliant with MassCEC guidelines. The hours worked during the 12-week period totaled 240 hours. Aditya reported to Gordon Davidson.</p>
                                 
                                 <p>Aditya had the opportunity to gain skills and experience while working on the following specific assignments:</p>
-                                <ul style="color: #cbd5e1; margin: 1rem 0 1rem 2rem;">
+                                <ul>
                                     <li>Designed and implemented a CI/CD pipeline using Node.js and MQTT to transfer and process data from Zigbee-enabled sensors to MongoDB Atlas in real time.</li>
                                     <li>Contributed to other internal projects, including marketing-related tasks and the development of interactive dashboards for energy usage insights.</li>
                                 </ul>
@@ -1644,24 +1576,23 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
 
-            <!-- Modal 2 - Green Pharmacy -->
-            <div id="modal2" class="modal">
-                <div class="modal-overlay" onclick="closeModal('modal2')">
-                    <div class="modal-wrapper">
-                        <div class="modal-content" onclick="event.stopPropagation()">
-                            <span class="close" onclick="closeModal('modal2')">&times;</span>
-                            <div class="modal-header">
-                                <img src="https://i.imgur.com/placeholder-amod.jpg" alt="Dr. Amod Sane" class="modal-photo" onerror="this.style.display='none';">
-                                <div class="modal-info">
-                                    <h3>Dr. Amod Sane</h3>
-                                    <div class="modal-role">Proprietor, Green Pharmacy</div>
-                                    <div class="modal-date">February 2, 2023</div>
-                                </div>
+                    <div class="recommendation-card-full">
+                        <div class="recommendation-header">
+                            <img src="https://i.imgur.com/placeholder-amod.jpg" alt="Dr. Amod Sane" class="recommender-photo" onerror="this.style.display='none';">
+                            <div class="recommendation-info">
+                                <h3>Green Pharmacy</h3>
+                                <div class="recommendation-role">Business Analyst and Strategist</div>
+                                <div class="recommendation-date">July 2022 - December 2022</div>
                             </div>
-                            <div class="modal-text">
+                        </div>
+                        <div class="recommendation-content-full">
+                            <div class="recommender-details">
+                                <strong>Dr. Amod Sane</strong><br>
+                                Proprietor, Green Pharmacy<br>
+                                February 2, 2023
+                            </div>
+                            <div class="letter-content">
                                 <p>I am pleased to write this Letter of Recommendation for Mr. Aditya Rajesh Nene, who served as a Business Analyst and Strategist during his internship at Green Pharmacy from July 2022 to December 2022.</p>
                                 
                                 <p>Aditya's contribution to our team was exemplary. His exceptional analytical skills, strategic thinking, and profound understanding of business dynamics were evident throughout his tenure. His efforts played a crucial role in the success of various projects, showcasing a commitment to excellence in every aspect of his work.</p>
@@ -1674,24 +1605,23 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
 
-            <!-- Modal 3 - Academic -->
-            <div id="modal3" class="modal">
-                <div class="modal-overlay" onclick="closeModal('modal3')">
-                    <div class="modal-wrapper">
-                        <div class="modal-content" onclick="event.stopPropagation()">
-                            <span class="close" onclick="closeModal('modal3')">&times;</span>
-                            <div class="modal-header">
-                                <img src="https://i.imgur.com/placeholder-ganesh.jpg" alt="Mr. Ganesh S. Wayal" class="modal-photo" onerror="this.style.display='none';">
-                                <div class="modal-info">
-                                    <h3>Mr. Ganesh S. Wayal</h3>
-                                    <div class="modal-role">Head, Computer Engineering Department</div>
-                                    <div class="modal-date">Padmabhooshan Vasantdada Patil Institute</div>
-                                </div>
+                    <div class="recommendation-card-full">
+                        <div class="recommendation-header">
+                            <img src="https://i.imgur.com/placeholder-ganesh.jpg" alt="Mr. Ganesh S. Wayal" class="recommender-photo" onerror="this.style.display='none';">
+                            <div class="recommendation-info">
+                                <h3>Padmabhooshan Vasantdada Patil Institute</h3>
+                                <div class="recommendation-role">Academic Performance & Leadership</div>
+                                <div class="recommendation-date">Bachelor's Degree</div>
                             </div>
-                            <div class="modal-text">
+                        </div>
+                        <div class="recommendation-content-full">
+                            <div class="recommender-details">
+                                <strong>Mr. Ganesh S. Wayal</strong><br>
+                                Head, Computer Engineering Department<br>
+                                Padmabhooshan Vasantdada Patil Institute
+                            </div>
+                            <div class="letter-content">
                                 <p>I feel elated to write this letter of recommendation for Mr. Aditya Nene's application to your esteemed university. I am the Head of Computer Engineering Department, at Padmabhooshan Vasantdada Patil Institute of Technology. As Aditya's mentor and lecturer, I have found him to be a passionate, cheerful, and hardworking student.</p>
                                 
                                 <p>I am currently teaching him a Machine Learning course as a part of the university curriculum. Aditya uses his knowledge wisely while working on his mini-projects and comes up with innovative ideas. Looking at his academic performance and his determination to succeed, I suggested him to take up an Honors degree in Data Science and Visualization conducted by Savitribai Phule Pune University. He is currently pursuing that program under my guidance.</p>
@@ -1704,24 +1634,23 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
 
-            <!-- Modal 4 - Exposys -->
-            <div id="modal4" class="modal">
-                <div class="modal-overlay" onclick="closeModal('modal4')">
-                    <div class="modal-wrapper">
-                        <div class="modal-content" onclick="event.stopPropagation()">
-                            <span class="close" onclick="closeModal('modal4')">&times;</span>
-                            <div class="modal-header">
-                                <img src="https://i.imgur.com/placeholder-vishnu.jpg" alt="Y Vishnuvardhan" class="modal-photo" onerror="this.style.display='none';">
-                                <div class="modal-info">
-                                    <h3>Y Vishnuvardhan</h3>
-                                    <div class="modal-role">Chief Director, Exposys Data Labs</div>
-                                    <div class="modal-date">March 6, 2022 - April 5, 2022</div>
-                                </div>
+                    <div class="recommendation-card-full">
+                        <div class="recommendation-header">
+                            <img src="https://i.imgur.com/placeholder-vishnu.jpg" alt="Y Vishnuvardhan" class="recommender-photo" onerror="this.style.display='none';">
+                            <div class="recommendation-info">
+                                <h3>Exposys Data Labs</h3>
+                                <div class="recommendation-role">Data Science Intern</div>
+                                <div class="recommendation-date">March 2022 - April 2022</div>
                             </div>
-                            <div class="modal-text">
+                        </div>
+                        <div class="recommendation-content-full">
+                            <div class="recommender-details">
+                                <strong>Y Vishnuvardhan</strong><br>
+                                Chief Director, Exposys Data Labs<br>
+                                March 6, 2022 - April 5, 2022
+                            </div>
+                            <div class="letter-content">
                                 <p><strong>TO WHOM IT MAY CONCERN</strong></p>
                                 
                                 <p>This is to certify that Mr. ADITYA NENE has completed internship programme on "Data Science" from 06.03.2022 to 05.04.2022.</p>
@@ -1729,12 +1658,6 @@
                                 <p>He took keen interest in the work assigned and successfully completed it. During the period of internship we found him to be punctual, hardworking and inquisitive.</p>
                                 
                                 <p>We wish him luck and success in all his future endeavours.</p>
-                                
-                                <p style="margin-top: 2rem; text-align: right; font-weight: 600;">
-                                    <strong>Y Vishnuvardhan<br>
-                                    Chief Director<br>
-                                    Exposys Data Labs</strong>
-                                </p>
                             </div>
                         </div>
                     </div>
